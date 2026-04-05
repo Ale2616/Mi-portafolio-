@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Portafolio de Alejandro - Especialista en Sistemas Linux, Ciberseguridad y Optimización de Hardware/Software">
-    <meta name="author" content="Alejandro">
-    <title>Alejandro | Especialista en Sistemas Linux & Ciberseguridad</title>
+    <meta name="description" content="Operador de Inteligencia y Ciberseguridad Avanzada - Especialista en Sistemas Linux, Ciberseguridad y Optimización de Hardware/Software">
+    <meta name="author" content="Operador">
+    <title>Operador de Inteligencia y Ciberseguridad Avanzada</title>
 
     <!-- Fuentes de Google: JetBrains Mono para código, Inter para texto -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -17,13 +17,162 @@
 
     <!-- Hoja de estilos principal -->
     <link rel="stylesheet" href="styles.css">
+
+    <!-- Estilos para modales y acordeones -->
+    <style>
+        /* Overlay del modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(8px);
+            z-index: 1000;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            padding: var(--spacing-md);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        /* Modal principal - 92% ancho en móvil */
+        .modal {
+            background: #0f0f1a;
+            border: 1px solid #272730;
+            border-radius: 16px;
+            padding: 24px;
+            width: 92%;
+            max-width: 500px;
+            max-height: 85vh;
+            overflow-y: auto;
+            position: relative;
+            transform: scale(0.95);
+            transition: transform 0.3s ease;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8), 0 0 40px rgba(255, 42, 77, 0.15);
+        }
+
+        .modal-overlay.active .modal {
+            transform: scale(1);
+        }
+
+        /* Botón de cerrar grande y fácil de tocar */
+        .modal-close {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: rgba(255, 42, 77, 0.15);
+            border: 1px solid rgba(255, 42, 77, 0.4);
+            color: #ff2a4d;
+            font-size: 1.8rem;
+            font-weight: bold;
+            cursor: pointer;
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            transition: all 0.2s ease;
+            z-index: 10;
+        }
+
+        .modal-close:active {
+            background: rgba(255, 42, 77, 0.3);
+            transform: scale(0.95);
+        }
+
+        .modal-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #e4e4e7;
+            margin: 0 0 20px 0;
+            padding-right: 50px;
+            text-align: center;
+        }
+
+        /* Estilos del acordeón */
+        .accordion-item {
+            margin-bottom: 12px;
+            border: 1px solid #272730;
+            border-radius: 12px;
+            overflow: hidden;
+            background: #14141f;
+        }
+
+        .accordion-header {
+            width: 100%;
+            padding: 16px 20px;
+            background: transparent;
+            border: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            text-align: left;
+            font-family: var(--font-sans);
+            font-size: 1rem;
+            font-weight: 600;
+            color: #e4e4e7;
+            transition: all 0.2s ease;
+        }
+
+        .accordion-header:hover {
+            background: rgba(255, 42, 77, 0.08);
+        }
+
+        .accordion-header:active {
+            background: rgba(255, 42, 77, 0.15);
+        }
+
+        .accordion-header.active {
+            background: rgba(255, 42, 77, 0.12);
+            color: #ff2a4d;
+        }
+
+        .accordion-icon {
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+            color: #ff2a4d;
+        }
+
+        .accordion-header.active .accordion-icon {
+            transform: rotate(180deg);
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.35s ease;
+        }
+
+        .accordion-content-inner {
+            padding: 0 20px 18px 20px;
+            color: #a1a1aa;
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        /* Service cards con cursor pointer */
+        .service-card[data-modal],
+        .skill-card[data-modal] {
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
     <!-- Navegación principal -->
     <nav class="navbar" id="navbar">
         <div class="navbar-container">
             <a href="#inicio" class="navbar-logo">
-                <span class="logo-text">&lt;Alejandro/&gt;</span>
+                <span class="logo-text">&lt;OP_INTEL/&gt;</span>
             </a>
 
             <!-- Menú de escritorio -->
@@ -49,16 +198,15 @@
     <!-- Sección Hero (Inicio) -->
     <section class="hero" id="inicio">
         <div class="hero-content">
-            <p class="hero-greeting">Hola, soy</p>
-            <h1 class="hero-title glitch-text" data-text="ALEJANDRO">ALEJANDRO</h1>
+            <h1 class="hero-title glitch-text" data-text="OPERADOR DE INTELIGENCIA Y CIBERSEGURIDAD AVANZADA">OPERADOR DE INTELIGENCIA Y CIBERSEGURIDAD AVANZADA</h1>
             <div class="hero-role">
                 <span class="role-prefix">&gt;</span>
                 <span class="role-text" id="typewriter"></span>
                 <span class="cursor">_</span>
             </div>
             <p class="hero-description">
-                Soy un apasionado por llevar el hardware y el software al límite.
-                Me especializo en ciberseguridad, personalización profunda (ricing) de distribuciones Linux
+                Operador especializado en llevar el hardware y el software al límite.
+                Experiencia en ciberseguridad ofensiva, personalización profunda (ricing) de distribuciones Linux
                 y optimización de dispositivos móviles.
             </p>
             <div class="hero-buttons">
@@ -81,42 +229,100 @@
             <p class="section-subtitle">Mi stack tecnológico y áreas de dominio</p>
 
             <div class="skills-grid">
-                <!-- Tarjeta: Sistemas Operativos -->
-                <div class="skill-card">
+                <!-- Tarjeta: Arch Linux -->
+                <div class="skill-card" data-modal="arch-linux">
                     <div class="skill-icons-row">
                         <i class="devicon-archlinux-plain colored"></i>
-                        <i class="devicon-kalilinux-plain colored"></i>
-                        <i class="devicon-linux-plain colored"></i>
-                        <i class="devicon-tux-plain colored"></i>
                     </div>
-                    <h3 class="skill-title">Sistemas Operativos</h3>
+                    <h3 class="skill-title">Arch Linux</h3>
                     <ul class="skill-list">
-                        <li><span class="skill-badge">Arch Linux</span></li>
-                        <li><span class="skill-badge">Kali Linux</span></li>
-                        <li><span class="skill-badge">CachyOS</span></li>
-                        <li><span class="skill-badge">PikaOS</span></li>
+                        <li><span class="skill-badge">Rolling Release</span></li>
+                        <li><span class="skill-badge">KISS</span></li>
+                        <li><span class="skill-badge">Pacman</span></li>
+                        <li><span class="skill-badge">AUR</span></li>
                     </ul>
                 </div>
 
-                <!-- Tarjeta: Móvil & Customización -->
-                <div class="skill-card">
+                <!-- Tarjeta: Kali Linux -->
+                <div class="skill-card" data-modal="kali-linux">
+                    <div class="skill-icons-row">
+                        <i class="devicon-kalilinux-plain colored"></i>
+                    </div>
+                    <h3 class="skill-title">Kali Linux</h3>
+                    <ul class="skill-list">
+                        <li><span class="skill-badge">Pentesting</span></li>
+                        <li><span class="skill-badge">Auditoría</span></li>
+                        <li><span class="skill-badge">Forense</span></li>
+                    </ul>
+                </div>
+
+                <!-- Tarjeta: CachyOS -->
+                <div class="skill-card" data-modal="cachyos">
+                    <div class="skill-icons-row">
+                        <i class="devicon-linux-plain colored"></i>
+                    </div>
+                    <h3 class="skill-title">CachyOS</h3>
+                    <ul class="skill-list">
+                        <li><span class="skill-badge">Alto Rendimiento</span></li>
+                        <li><span class="skill-badge">Kernels XanMod</span></li>
+                        <li><span class="skill-badge">BTRFS + ZSTD</span></li>
+                    </ul>
+                </div>
+
+                <!-- Tarjeta: PikaOS -->
+                <div class="skill-card" data-modal="pikaos">
+                    <div class="skill-icons-row">
+                        <i class="devicon-tux-plain colored"></i>
+                    </div>
+                    <h3 class="skill-title">PikaOS</h3>
+                    <ul class="skill-list">
+                        <li><span class="skill-badge">Base Ubuntu</span></li>
+                        <li><span class="skill-badge">Gaming</span></li>
+                        <li><span class="skill-badge">Baja Latencia</span></li>
+                    </ul>
+                </div>
+
+                <!-- Tarjeta: Android Root -->
+                <div class="skill-card" data-modal="android-root">
                     <div class="skill-icons-row">
                         <i class="devicon-android-plain colored"></i>
+                    </div>
+                    <h3 class="skill-title">Android Root</h3>
+                    <ul class="skill-list">
+                        <li><span class="skill-badge">SuperSU</span></li>
+                        <li><span class="skill-badge">Control Total</span></li>
+                        <li><span class="skill-badge">Permisos Root</span></li>
+                    </ul>
+                </div>
+
+                <!-- Tarjeta: Magisk / KernelSU -->
+                <div class="skill-card" data-modal="magisk-kernelsu">
+                    <div class="skill-icons-row">
                         <i class="devicon-termux-plain colored"></i>
                     </div>
-                    <h3 class="skill-title">Móvil & Customización</h3>
+                    <h3 class="skill-title">Magisk / KernelSU</h3>
                     <ul class="skill-list">
-                        <li><span class="skill-badge">Android Root</span></li>
-                        <li><span class="skill-badge">Magisk</span></li>
-                        <li><span class="skill-badge">KernelSU</span></li>
-                        <li><span class="skill-badge">Custom ROMs</span></li>
-                        <li><span class="skill-badge">GSI / MiniOS</span></li>
-                        <li><span class="skill-badge">Termux Avanzado</span></li>
+                        <li><span class="skill-badge">Systemless Root</span></li>
+                        <li><span class="skill-badge">Módulos</span></li>
+                        <li><span class="skill-badge">Ocultar Root</span></li>
+                    </ul>
+                </div>
+
+                <!-- Tarjeta: Custom ROMs -->
+                <div class="skill-card" data-modal="custom-roms">
+                    <div class="skill-icons-row">
+                        <i class="devicon-android-plain colored"></i>
+                    </div>
+                    <h3 class="skill-title">Custom ROMs</h3>
+                    <ul class="skill-list">
+                        <li><span class="skill-badge">LineageOS</span></li>
+                        <li><span class="skill-badge">Pixel Experience</span></li>
+                        <li><span class="skill-badge">Optimización</span></li>
                     </ul>
                 </div>
 
                 <!-- Tarjeta: Hardware -->
-                <div class="skill-card">
+                <div class="skill-card" data-modal="hardware">
                     <div class="skill-icons-row">
                         <i class="devicon-amd-original colored"></i>
                         <i class="devicon-raspberrypi-line colored"></i>
@@ -126,7 +332,6 @@
                         <li><span class="skill-badge">Optimización Ryzen</span></li>
                         <li><span class="skill-badge">Audio Hi-Fi (FLAC)</span></li>
                         <li><span class="skill-badge">Overclocking</span></li>
-                        <li><span class="skill-badge">Tuning de Sistema</span></li>
                     </ul>
                 </div>
             </div>
@@ -143,7 +348,7 @@
 
             <div class="services-grid">
                 <!-- Servicio 1: Seguridad Ofensiva -->
-                <article class="service-card">
+                <article class="service-card" data-modal="seguridad-ofensiva">
                     <div class="service-header">
                         <span class="service-emoji" aria-hidden="true">🛡️</span>
                         <span class="service-number">01</span>
@@ -161,7 +366,7 @@
                 </article>
 
                 <!-- Servicio 2: Optimización de Sistemas -->
-                <article class="service-card">
+                <article class="service-card" data-modal="optimizacion">
                     <div class="service-header">
                         <span class="service-emoji" aria-hidden="true">⚡</span>
                         <span class="service-number">02</span>
@@ -179,7 +384,7 @@
                 </article>
 
                 <!-- Servicio 3: Modding de Dispositivos -->
-                <article class="service-card">
+                <article class="service-card" data-modal="modding">
                     <div class="service-header">
                         <span class="service-emoji" aria-hidden="true">📱</span>
                         <span class="service-number">03</span>
@@ -238,25 +443,31 @@
                                 <path d="M22 6l-10 7L2 6"/>
                             </svg>
                         </a>
+                        <a href="https://wa.me/573115397930" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="WhatsApp">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+                            </svg>
+                        </a>
                     </div>
                 </div>
 
                 <!-- Formulario de contacto -->
-                <form class="contact-form" id="contact-form">
+                <form class="contact-form" id="contact-form" action='https://formsubmit.co/Josehacksyt@gmail.com' method='POST'>
+                    <input type='hidden' name='_subject' value='¡Nuevo mensaje!'>
                     <div class="form-group">
                         <label for="name" class="form-label">Nombre</label>
-                        <input type="text" id="name" name="name" class="form-input" placeholder="Tu nombre" required>
+                        <input type="text" id="name" name="nombre" class="form-input" placeholder="Nombre" required>
                     </div>
                     <div class="form-group">
                         <label for="email" class="form-label">Email</label>
-                        <input type="email" id="email" name="email" class="form-input" placeholder="tu@email.com" required>
+                        <input type="email" id="email" name="email" class="form-input" placeholder="Correo" required>
                     </div>
                     <div class="form-group">
                         <label for="message" class="form-label">Mensaje</label>
-                        <textarea id="message" name="message" class="form-input form-textarea" placeholder="Tu mensaje..." rows="5" required></textarea>
+                        <textarea id="message" name="mensaje" class="form-input form-textarea" placeholder="Mensaje" rows="5" required></textarea>
                     </div>
                     <button type="submit" class="btn btn-primary btn-full">
-                        <span>Enviar Mensaje</span>
+                        <span>Enviar</span>
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/>
                         </svg>
@@ -270,7 +481,7 @@
     <footer class="footer">
         <div class="container">
             <p class="footer-text">
-                Diseñado y desarrollado por <span class="highlight">Alejandro</span>
+                Diseñado y desarrollado por <span class="highlight">Operador</span>
             </p>
             <p class="footer-copyright">
                 &copy; <span id="current-year">2026</span> Todos los derechos reservados.
@@ -278,7 +489,914 @@
         </div>
     </footer>
 
+    <!-- Modales con acordeones - TODOS OCULTOS INICIALMENTE -->
+    <div class="modal-overlay" id="modal-overlay">
+        <!-- Modal: Seguridad Ofensiva (Servicio 1) -->
+        <div class="modal" id="modal-seguridad-ofensiva" style="display: none;">
+            <button class="modal-close" data-modal-close>&times;</button>
+            <div class="modal-content">
+                <h3 class="modal-title">Seguridad Ofensiva & Pentesting</h3>
+
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span>¿Qué es?</span>
+                        <span class="accordion-icon">▼</span>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="accordion-content-inner">
+                            Disciplina que aplica metodologías de ataque controlado (Red Team) para evaluar defensas. Incluye explotación de vulnerabilidades OWASP Top 10, escalada de privilegios, movimiento lateral y exfiltración simulada en entornos Windows/Linux.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span>¿Para qué sirve?</span>
+                        <span class="accordion-icon">▼</span>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="accordion-content-inner">
+                            Validar controles de seguridad, cumplir normativas (ISO 27001, PCI-DSS), identificar CVEs explotables antes que actores maliciosos, y medir tiempos de detección/respuesta (MTTD/MTTR) del equipo Blue Team.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span>¿Cómo funciona?</span>
+                        <span class="accordion-icon">▼</span>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="accordion-content-inner">
+                            Siguiendo metodologías como PTES, OSSTMM o MITRE ATT&CK. Herramientas: Burp Suite (web), Metasploit/Cobalt Strike (explotación), Impacket (movimiento lateral), BloodHound (AD), Hashcat/John (cracking), y C2 frameworks para simulación de APTs.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal: Optimización de Sistemas (Servicio 2) -->
+        <div class="modal" id="modal-optimizacion" style="display: none;">
+            <button class="modal-close" data-modal-close>&times;</button>
+            <div class="modal-content">
+                <h3 class="modal-title">Optimización de Sistemas (Ricing)</h3>
+
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span>¿Qué es?</span>
+                        <span class="accordion-icon">▼</span>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="accordion-content-inner">
+                            Personalización profunda de window managers compostados (Wayland: Hyprland, Sway / X11: i3-gaps, bspwm) con configuración en Lua, Python o bash. Incluye shaders (picom), barras (waybar, polybar) y launchers (wofi, rofi).
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span>¿Para qué sirve?</span>
+                        <span class="accordion-icon">▼</span>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="accordion-content-inner">
+                            Reducir uso de RAM de 2GB (DE tradicional) a ~400MB, mejorar workflow con tiling automático, atajos de teclado personalizados, y crear dotfiles versionados en Git para despliegue rápido en múltiples máquinas.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span>¿Cómo funciona?</span>
+                        <span class="accordion-icon">▼</span>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="accordion-content-inner">
+                            Mediante archivos de configuración (.config), scripts de autostart, hooks de eventos, temas GTK/Qt, fuentes patched (Nerd Fonts), y herramientas como home-manager (NixOS) o GNU Stow para gestión de dotfiles.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal: Modding de Dispositivos (Servicio 3) -->
+        <div class="modal" id="modal-modding" style="display: none;">
+            <button class="modal-close" data-modal-close>&times;</button>
+            <div class="modal-content">
+                <h3 class="modal-title">Modding de Dispositivos Android</h3>
+
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span>¿Qué es?</span>
+                        <span class="accordion-icon">▼</span>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="accordion-content-inner">
+                            Modificación del stack de software Android: desbloqueo de bootloader, flasheo de recoveries (TWRP, OrangeFox), root (Magisk, KernelSU, APatch), y Custom ROMs (LineageOS, crDroid, Evolution X). Incluye edición de particiones y kernels.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span>¿Para qué sirve?</span>
+                        <span class="accordion-icon">▼</span>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="accordion-content-inner">
+                            Revivir dispositivos con bootloader bloqueado, eliminar bloatware de fabricantes, actualizar Android en dispositivos EOL, mejorar batería con kernels undervolteados, y habilitar features como 90/120Hz, VoLTE, o cámaras GCam.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span>¿Cómo funciona?</span>
+                        <span class="accordion-icon">▼</span>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="accordion-content-inner">
+                            Vía ADB/Fastboot para comandos low-level, desbloqueo OEM, flash de boot/recovery images, modificación de fstab, patch de vbmeta para deshabilitar verity, y uso de módulos Magisk para systemless modifications. Soporte en dispositivos Xiaomi, Pixel, Motorola, OnePlus.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal: Arch Linux -->
+        <div class="modal" id="modal-arch-linux" style="display: none;">
+            <button class="modal-close" data-modal-close>&times;</button>
+            <div class="modal-content">
+                <h3 class="modal-title">Arch Linux</h3>
+
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span>¿Qué es?</span>
+                        <span class="accordion-icon">▼</span>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="accordion-content-inner">
+                            Distribución Linux rolling release basada en la filosofía KISS (Keep It Simple, Stupid). Actualizaciones continuas sin necesidad de reinstalar, paquete manager pacman ultra-rápido, y acceso al AUR (Arch User Repository) con más de 70,000 paquetes.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span>¿Para qué sirve?</span>
+                        <span class="accordion-icon">▼</span>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="accordion-content-inner">
+                            Para usuarios avanzados que quieren control total del sistema, software siempre actualizado (últimas versiones el día del release), instalación minimalista desde cero (Arch Install Scripts), y documentación excepcional (Arch Wiki).
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span>¿Cómo funciona?</span>
+                        <span class="accordion-icon">▼</span>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="accordion-content-inner">
+                            Instalación base vía CLI con archinstall o manualmente, configuración de /etc/pacman.conf para repositorios, uso de yay/paru como AUR helpers, systemd para init, y kernels múltiples (linux, linux-lts, linux-zen) según necesidad.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal: Kali Linux -->
+        <div class="modal" id="modal-kali-linux" style="display: none;">
+            <button class="modal-close" data-modal-close>&times;</button>
+            <div class="modal-content">
+                <h3 class="modal-title">Kali Linux</h3>
+
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span>¿Qué es?</span>
+                        <span class="accordion-icon">▼</span>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="accordion-content-inner">
+                            Distribución Debian-based diseñada para pentesting y auditoría de seguridad. Mantenido por Offensive Security, incluye más de 600 herramientas preinstaladas para testing de penetración, análisis forense, ingeniería inversa y ataques wireless.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span>¿Para qué sirve?</span>
+                        <span class="accordion-icon">▼</span>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="accordion-content-inner">
+                            Realizar auditorías de seguridad en redes, sistemas y aplicaciones web. Análisis de vulnerabilidades, cracking de contraseñas, sniffing de tráfico, explotación de servicios, y generación de reportes para cumplimiento de normativas.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span>¿Cómo funciona?</span>
+                        <span class="accordion-icon">▼</span>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="accordion-content-inner">
+                            Herramientas clave: Nmap (escaneo), Metasploit Framework (explotación), Burp Suite (web), Aircrack-ng (WiFi), John the Ripper/Hashcat (password cracking), Wireshark (análisis de paquetes), SQLmap (inyección SQL), y Ghidra/Cutter (reverse engineering).
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal: CachyOS -->
+        <div class="modal" id="modal-cachyos" style="display: none;">
+            <button class="modal-close" data-modal-close>&times;</button>
+            <div class="modal-content">
+                <h3 class="modal-title">CachyOS</h3>
+
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span>¿Qué es?</span>
+                        <span class="accordion-icon">▼</span>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="accordion-content-inner">
+                            Distribución basada en Arch Linux optimizada para máxima velocidad y respuesta del sistema. Utiliza compilaciones con flags de optimización avanzados (-O3, LTO, BOLT) y kernels personalizados para reducir latencia.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span>¿Para qué sirve?</span>
+                        <span class="accordion-icon">▼</span>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="accordion-content-inner">
+                            Para gaming, desarrollo y usuarios que buscan el máximo rendimiento de su hardware, especialmente en procesadores modernos (AMD Zen 4/5, Intel 12ª-14ª gen). Ideal para workstations de producción y gaming de baja latencia.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span>¿Cómo funciona?</span>
+                        <span class="accordion-icon">▼</span>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="accordion-content-inner">
+                            Utiliza repositorios optimizados con paquetes compilados para x86-64-v3/v4, kernels personalizados (XanMod, Bore, CachyOS kernel con scheduler BORE), sistema de archivos BTRFS con compresión ZSTD por defecto, y caché de paquetes con mirrorselect automático.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal: PikaOS -->
+        <div class="modal" id="modal-pikaos" style="display: none;">
+            <button class="modal-close" data-modal-close>&times;</button>
+            <div class="modal-content">
+                <h3 class="modal-title">PikaOS</h3>
+
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span>¿Qué es?</span>
+                        <span class="accordion-icon">▼</span>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="accordion-content-inner">
+                            Distribución Linux basada en Ubuntu optimizada para gaming y baja latencia. Combina la estabilidad de Ubuntu con kernels de baja latencia y drivers actualizados para máximo rendimiento en juegos y aplicaciones demandantes.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span>¿Para qué sirve?</span>
+                        <span class="accordion-icon">▼</span>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="accordion-content-inner">
+                            Gaming en Linux con máximo FPS, reducción de input lag, streaming de baja latencia, y ejecución de aplicaciones que requieren respuesta rápida del sistema sin sacrificar compatibilidad con paquetes .deb y PPAs de Ubuntu.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span>¿Cómo funciona?</span>
+                        <span class="accordion-icon">▼</span>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="accordion-content-inner">
+                            Kernel Linux con patchset de baja latencia (PREEMPT_RT), drivers de video actualizados (Mesa git, NVIDIA latest), governors de CPU performance por defecto, IRQ affinity tuning, y soporte para Wine/Proton optimizado para gaming.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal: Android Root -->
+        <div class="modal" id="modal-android-root" style="display: none;">
+            <button class="modal-close" data-modal-close>&times;</button>
+            <div class="modal-content">
+                <h3 class="modal-title">Android Root</h3>
+
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span>¿Qué es?</span>
+                        <span class="accordion-icon">▼</span>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="accordion-content-inner">
+                            Proceso de obtener permisos de superusuario (root) en el sistema operativo Android, permitiendo acceso completo al directorio /system, modificación de archivos del kernel, y ejecución de comandos con privilegios máximos.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span>¿Para qué sirve?</span>
+                        <span class="accordion-icon">▼</span>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="accordion-content-inner">
+                            Control total del dispositivo: eliminar bloatware del fabricante, overclock/undervolt de CPU/GPU, backup completo con Titanium Backup, automatización avanzada con Tasker, y acceso a aplicaciones que requieren root.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span>¿Cómo funciona?</span>
+                        <span class="accordion-icon">▼</span>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="accordion-content-inner">
+                            Mediante exploits de kernel o desbloqueo de bootloader + flash de binaries de root (Magisk, KernelSU). Se modifica el boot.img para inyectar el daemon de root, permitiendo gestión de permisos vía apps de superusuario.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal: Magisk / KernelSU -->
+        <div class="modal" id="modal-magisk-kernelsu" style="display: none;">
+            <button class="modal-close" data-modal-close>&times;</button>
+            <div class="modal-content">
+                <h3 class="modal-title">Magisk / KernelSU</h3>
+
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span>¿Qué es?</span>
+                        <span class="accordion-icon">▼</span>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="accordion-content-inner">
+                            Magisk: solución de root systemless que no modifica la partición /system. KernelSU: implementación de root a nivel de kernel para dispositivos con GKI (Generic Kernel Image). Ambos permiten ocultar root de aplicaciones bancarias y SafetyNet.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span>¿Para qué sirve?</span>
+                        <span class="accordion-icon">▼</span>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="accordion-content-inner">
+                            Obtener root sin triplear verificación de integridad, instalar módulos para personalización (Viper4Android, LSPosed, Greenify), y mantener compatibilidad con apps que detectan root mediante MagiskHide o Zygisk.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span>¿Cómo funciona?</span>
+                        <span class="accordion-icon">▼</span>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="accordion-content-inner">
+                            Magisk: parcheo de boot.img desde la app, flash vía fastboot/ODIN, gestión de módulos desde la interfaz. KernelSU: requiere kernel GKI 5.10+, se instala como módulo del kernel, ofrece mejor aislamiento y performance que soluciones userspace.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal: Custom ROMs -->
+        <div class="modal" id="modal-custom-roms" style="display: none;">
+            <button class="modal-close" data-modal-close>&times;</button>
+            <div class="modal-content">
+                <h3 class="modal-title">Custom ROMs</h3>
+
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span>¿Qué es?</span>
+                        <span class="accordion-icon">▼</span>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="accordion-content-inner">
+                            Sistemas operativos Android modificados por la comunidad que reemplazan el firmware del fabricante. Incluyen LineageOS (sucesor de CyanogenMod), Pixel Experience, crDroid, Evolution X, y ROMs específicas por dispositivo.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span>¿Para qué sirve?</span>
+                        <span class="accordion-icon">▼</span>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="accordion-content-inner">
+                            Actualizar Android en dispositivos EOL (End of Life), eliminar bloatware, mejorar privacidad con Privacy Guard, optimizar batería y rendimiento, y acceder a la última versión de Android en hardware antiguo.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span>¿Cómo funciona?</span>
+                        <span class="accordion-icon">▼</span>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="accordion-content-inner">
+                            Desbloqueo de bootloader, instalación de custom recovery (TWRP, OrangeFox), wipe de datos, flash de la ROM + GApps (si no incluye), y opcionalmente Magisk para root. Soporte para dispositivos Xiaomi, Pixel, OnePlus, Motorola, Samsung (Exynos).
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal: Hardware -->
+        <div class="modal" id="modal-hardware" style="display: none;">
+            <button class="modal-close" data-modal-close>&times;</button>
+            <div class="modal-content">
+                <h3 class="modal-title">Hardware - Optimización & Audio Hi-Fi</h3>
+
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span>¿Qué es?</span>
+                        <span class="accordion-icon">▼</span>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="accordion-content-inner">
+                            Optimización de componentes físicos: curva de optimización para CPUs AMD Ryzen (PBO2, Curve Optimizer), tuning de voltajes, configuración de timings de RAM, y configuración de audio Hi-Fi con DACs externos y reproducción FLAC sin pérdida.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span>¿Para qué sirve?</span>
+                        <span class="accordion-icon">▼</span>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="accordion-content-inner">
+                            Maximizar rendimiento de CPUs Ryzen con Precision Boost Overdrive 2, reducir temperaturas con undervolt, mejorar estabilidad con overclock manual, y disfrutar de audio de alta fidelidad (24-bit/192kHz) con DACs externos y configuración ALSA/PulseAudio.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span>¿Cómo funciona?</span>
+                        <span class="accordion-icon">▼</span>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="accordion-content-inner">
+                            BIOS/UEFI: configuración de PBO, Curve Optimizer (negative offsets), FCLK/MCLK tuning. Software: Ryzen Master, HWInfo64, OCCT para estabilidad. Audio: PipeWire/JACK para baja latencia, Tidal/Qobuz para streaming Hi-Res, ecualización con EasyEffects.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Script principal -->
-    <script src="script.js"></script>
+    <script>
+        /**
+         * =====================================================
+         * PORTAFOLIO CYBERPUNK - ALEJANDRO
+         * JavaScript para animaciones e interacciones
+         * =====================================================
+         */
+
+        // -----------------------------------------------------
+        // MENÚ MÓVIL (HAMBURGUESA)
+        // -----------------------------------------------------
+        document.addEventListener('DOMContentLoaded', () => {
+            const navbarToggle = document.getElementById('navbar-toggle');
+            const navbarMenu = document.getElementById('navbar-menu');
+            const navbarLinks = document.querySelectorAll('.navbar-link');
+
+            if (navbarToggle) {
+                navbarToggle.addEventListener('click', () => {
+                    navbarToggle.classList.toggle('active');
+                    navbarMenu.classList.toggle('active');
+                    const isExpanded = navbarToggle.classList.contains('active');
+                    navbarToggle.setAttribute('aria-expanded', isExpanded);
+                });
+            }
+
+            navbarLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    navbarToggle.classList.remove('active');
+                    navbarMenu.classList.remove('active');
+                    navbarToggle.setAttribute('aria-expanded', 'false');
+                });
+            });
+
+            document.addEventListener('click', (e) => {
+                if (!navbarToggle.contains(e.target) && !navbarMenu.contains(e.target)) {
+                    navbarToggle.classList.remove('active');
+                    navbarMenu.classList.remove('active');
+                    navbarToggle.setAttribute('aria-expanded', 'false');
+                }
+            });
+        });
+
+        // -----------------------------------------------------
+        // NAVBAR CON EFECTO SCROLL
+        // -----------------------------------------------------
+        const navbar = document.getElementById('navbar');
+        if (navbar) {
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            });
+        }
+
+        // -----------------------------------------------------
+        // EFECTO TYPEWRITER
+        // -----------------------------------------------------
+        const typewriterElement = document.getElementById('typewriter');
+        if (typewriterElement) {
+            const roles = [
+                'Inteligencia y Ciberseguridad Avanzada',
+                'Operaciones Ofensivas',
+                'Pentesting & Red Team',
+                'Linux & System Exploitation',
+                'Mobile Security & Reverse Engineering'
+            ];
+
+            let roleIndex = 0;
+            let charIndex = 0;
+            let isDeleting = false;
+            let typingSpeed = 100;
+
+            function typeWriter() {
+                const currentRole = roles[roleIndex];
+
+                if (isDeleting) {
+                    typewriterElement.textContent = currentRole.substring(0, charIndex - 1);
+                    charIndex--;
+                    typingSpeed = 50;
+                } else {
+                    typewriterElement.textContent = currentRole.substring(0, charIndex + 1);
+                    charIndex++;
+                    typingSpeed = 100;
+                }
+
+                if (!isDeleting && charIndex === currentRole.length) {
+                    isDeleting = true;
+                    typingSpeed = 2000;
+                } else if (isDeleting && charIndex === 0) {
+                    isDeleting = false;
+                    roleIndex = (roleIndex + 1) % roles.length;
+                    typingSpeed = 500;
+                }
+
+                setTimeout(typeWriter, typingSpeed);
+            }
+
+            setTimeout(typeWriter, 1000);
+        }
+
+        // -----------------------------------------------------
+        // ANIMACIONES CON INTERSECTION OBSERVER
+        // -----------------------------------------------------
+        const animatedElements = document.querySelectorAll('.skill-card, .service-card');
+        const observerCallback = (entries, observer) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.classList.add('visible');
+                    }, index * 100);
+                    observer.unobserve(entry.target);
+                }
+            });
+        };
+
+        const observer = new IntersectionObserver(observerCallback, { threshold: 0.1 });
+        animatedElements.forEach(element => {
+            observer.observe(element);
+        });
+
+        // -----------------------------------------------------
+        // SCROLL SUAVE
+        // -----------------------------------------------------
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    const navbarHeight = navbar ? navbar.offsetHeight : 0;
+                    const targetPosition = targetElement.offsetTop - navbarHeight;
+                    window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+                }
+            });
+        });
+
+        // -----------------------------------------------------
+        // FONDO DE PARTÍCULAS
+        // -----------------------------------------------------
+        const canvas = document.getElementById('particles-canvas');
+        if (canvas) {
+            const ctx = canvas.getContext('2d');
+            let width = window.innerWidth;
+            let height = window.innerHeight;
+            canvas.width = width;
+            canvas.height = height;
+
+            const particleConfig = {
+                count: 50,
+                minSize: 1,
+                maxSize: 3,
+                minSpeed: 0.2,
+                maxSpeed: 0.8,
+                connectionDistance: 150,
+                color: 'rgba(255, 42, 77, '
+            };
+
+            let particles = [];
+
+            class Particle {
+                constructor() {
+                    this.x = Math.random() * width;
+                    this.y = Math.random() * height;
+                    this.vx = (Math.random() - 0.5) * particleConfig.maxSpeed;
+                    this.vy = (Math.random() - 0.5) * particleConfig.maxSpeed;
+                    this.size = Math.random() * (particleConfig.maxSize - particleConfig.minSize) + particleConfig.minSize;
+                    this.opacity = Math.random() * 0.5 + 0.3;
+                }
+
+                update() {
+                    this.x += this.vx;
+                    this.y += this.vy;
+                    if (this.x < 0 || this.x > width) this.vx *= -1;
+                    if (this.y < 0 || this.y > height) this.vy *= -1;
+                }
+
+                draw() {
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                    ctx.fillStyle = particleConfig.color + this.opacity + ')';
+                    ctx.fill();
+                }
+            }
+
+            function initParticles() {
+                particles = [];
+                for (let i = 0; i < particleConfig.count; i++) {
+                    particles.push(new Particle());
+                }
+            }
+
+            function drawConnections() {
+                for (let i = 0; i < particles.length; i++) {
+                    for (let j = i + 1; j < particles.length; j++) {
+                        const dx = particles[i].x - particles[j].x;
+                        const dy = particles[i].y - particles[j].y;
+                        const distance = Math.sqrt(dx * dx + dy * dy);
+
+                        if (distance < particleConfig.connectionDistance) {
+                            const opacity = 1 - (distance / particleConfig.connectionDistance);
+                            ctx.beginPath();
+                            ctx.moveTo(particles[i].x, particles[i].y);
+                            ctx.lineTo(particles[j].x, particles[j].y);
+                            ctx.strokeStyle = particleConfig.color + (opacity * 0.3) + ')';
+                            ctx.lineWidth = 1;
+                            ctx.stroke();
+                        }
+                    }
+                }
+            }
+
+            function animate() {
+                ctx.clearRect(0, 0, width, height);
+                particles.forEach(particle => {
+                    particle.update();
+                    particle.draw();
+                });
+                drawConnections();
+                requestAnimationFrame(animate);
+            }
+
+            initParticles();
+            animate();
+
+            window.addEventListener('resize', () => {
+                width = window.innerWidth;
+                height = window.innerHeight;
+                canvas.width = width;
+                canvas.height = height;
+                initParticles();
+            });
+
+            canvas.addEventListener('mousemove', (e) => {
+                const mouseX = e.clientX;
+                const mouseY = e.clientY;
+                particles.forEach(particle => {
+                    const dx = particle.x - mouseX;
+                    const dy = particle.y - mouseY;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+                    if (distance < 200) {
+                        const force = (200 - distance) / 200;
+                        particle.vx += (dx / distance) * force * 0.5;
+                        particle.vy += (dy / distance) * force * 0.5;
+                    }
+                });
+            });
+        }
+
+        // -----------------------------------------------------
+        // AÑO ACTUAL EN EL FOOTER
+        // -----------------------------------------------------
+        const yearElement = document.getElementById('current-year');
+        if (yearElement) {
+            yearElement.textContent = new Date().getFullYear();
+        }
+
+        // -----------------------------------------------------
+        // FORMULARIO DE CONTACTO
+        // -----------------------------------------------------
+        const contactForm = document.getElementById('contact-form');
+        if (contactForm) {
+            contactForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+
+                // Validación directa con .value.trim() - INFALIBLE
+                const nameInput = document.getElementById('name');
+                const emailInput = document.getElementById('email');
+                const messageInput = document.getElementById('message');
+
+                const name = nameInput.value.trim();
+                const email = emailInput.value.trim();
+                const message = messageInput.value.trim();
+
+                if (name === '' || email === '' || message === '') {
+                    showAlert('Por favor completa todos los campos', 'error');
+                    return;
+                }
+
+                // Enviar formulario a FormSubmit
+                contactForm.action = 'https://formsubmit.co/Josehacksyt@gmail.com';
+                contactForm.method = 'POST';
+                contactForm.submit();
+            });
+        }
+
+        function showAlert(message, type) {
+            const alert = document.createElement('div');
+            alert.className = `alert alert-${type}`;
+            alert.textContent = message;
+            alert.style.cssText = `
+                position: fixed;
+                top: 80px;
+                right: 20px;
+                padding: 1rem 1.5rem;
+                background: ${type === 'success' ? 'rgba(34, 197, 94, 0.9)' : 'rgba(239, 68, 68, 0.9)'};
+                color: white;
+                border-radius: 8px;
+                font-family: var(--font-sans);
+                font-size: 0.875rem;
+                z-index: 1000;
+                animation: slideIn 0.3s ease;
+                backdrop-filter: blur(10px);
+            `;
+
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes slideIn {
+                    from { transform: translateX(100%); opacity: 0; }
+                    to { transform: translateX(0); opacity: 1; }
+                }
+            `;
+            document.head.appendChild(style);
+            document.body.appendChild(alert);
+
+            setTimeout(() => {
+                alert.style.animation = 'slideIn 0.3s ease reverse';
+                setTimeout(() => alert.remove(), 300);
+            }, 3000);
+        }
+
+        // -----------------------------------------------------
+        // SISTEMA DE MODALES - CONEXIÓN TOTAL
+        // -----------------------------------------------------
+        document.addEventListener('DOMContentLoaded', () => {
+            const modalOverlay = document.getElementById('modal-overlay');
+
+            // BUSCAR TODAS las tarjetas con data-modal (service-card Y skill-card)
+            const allCards = document.querySelectorAll('[data-modal]');
+            const modalCloseButtons = document.querySelectorAll('[data-modal-close]');
+            const accordionHeaders = document.querySelectorAll('.accordion-header');
+
+            // Abrir modal al hacer clic en CUALQUIER tarjeta
+            allCards.forEach(card => {
+                card.addEventListener('click', () => {
+                    const modalId = card.getAttribute('data-modal');
+                    const modal = document.getElementById(`modal-${modalId}`);
+
+                    if (modal && modalOverlay) {
+                        modalOverlay.classList.add('active');
+                        modal.style.display = 'block';
+                        // Forzar reflow para la animación
+                        modal.offsetHeight;
+                        modal.style.opacity = '1';
+                        document.body.style.overflow = 'hidden';
+                    } else {
+                        console.error('Modal no encontrado:', `modal-${modalId}`);
+                    }
+                });
+            });
+
+            // Cerrar modal con botón X
+            modalCloseButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    closeModal();
+                });
+            });
+
+            // Cerrar modal al hacer clic fuera
+            modalOverlay.addEventListener('click', (e) => {
+                if (e.target === modalOverlay) {
+                    closeModal();
+                }
+            });
+
+            // Cerrar modal con tecla Escape
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && modalOverlay && modalOverlay.classList.contains('active')) {
+                    closeModal();
+                }
+            });
+
+            // Sistema de acordeón
+            accordionHeaders.forEach(header => {
+                header.addEventListener('click', () => {
+                    const content = header.nextElementSibling;
+                    const isActive = header.classList.contains('active');
+
+                    // Cerrar todos los acordeones
+                    accordionHeaders.forEach(h => {
+                        h.classList.remove('active');
+                        h.nextElementSibling.style.maxHeight = '0';
+                    });
+
+                    // Si no estaba activo, abrirlo
+                    if (!isActive) {
+                        header.classList.add('active');
+                        const contentHeight = content.querySelector('.accordion-content-inner').offsetHeight;
+                        content.style.maxHeight = (contentHeight + 36) + 'px';
+                    }
+                });
+            });
+        });
+
+        function closeModal() {
+            const modalOverlay = document.getElementById('modal-overlay');
+            const modals = document.querySelectorAll('.modal');
+
+            modalOverlay.classList.remove('active');
+
+            modals.forEach(modal => {
+                modal.style.display = 'none';
+                modal.style.opacity = '0';
+            });
+
+            document.body.style.overflow = '';
+        }
+
+        // -----------------------------------------------------
+        // CONSOLE EASTER EGG
+        // -----------------------------------------------------
+        console.log(`
+%c🔐 OPERADOR DE INTELIGENCIA Y CIBERSEGURIDAD AVANZADA
+%c
+Acceso autorizado. Bienvenido al centro de operaciones.
+        `,
+            'color: #00ffff; font-family: monospace; font-size: 16px; font-weight: bold;',
+            'color: #a1a1aa; font-family: monospace; font-size: 12px;'
+        );
+    </script>
 </body>
 </html>
