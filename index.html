@@ -20,6 +20,296 @@
 
     <!-- Estilos para modales y acordeones -->
     <style>
+        /* ============================================
+           EFECTOS AVANZADOS DE CIBERSEGURIDAD
+           ============================================ */
+
+        /* Matrix Rain Canvas */
+        #matrix-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            opacity: 0.12;
+            pointer-events: none;
+        }
+
+        /* Scanlines CRT */
+        .scanlines {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                0deg,
+                transparent,
+                transparent 2px,
+                rgba(0, 0, 0, 0.15) 3px,
+                rgba(0, 0, 0, 0.15) 4px
+            );
+            pointer-events: none;
+            z-index: 9998;
+        }
+
+        /* Barra de escaneo */
+        .scan-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, rgba(0, 255, 65, 0.8), transparent);
+            animation: scan-move 3s linear infinite;
+            pointer-events: none;
+            z-index: 9999;
+            box-shadow: 0 0 10px rgba(0, 255, 65, 0.5);
+        }
+
+        @keyframes scan-move {
+            0% { top: -5%; }
+            100% { top: 105%; }
+        }
+
+        /* Logo con efecto glitch avanzado */
+        .cyber-logo {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #00ff41;
+            text-decoration: none;
+            position: relative;
+            display: inline-block;
+            text-shadow: 0 0 10px rgba(0, 255, 65, 0.5);
+            animation: logo-glow 2s ease-in-out infinite;
+        }
+
+        .cyber-logo::before,
+        .cyber-logo::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .cyber-logo::before {
+            color: #ff003c;
+            animation: glitch-1 2.5s infinite linear alternate-reverse;
+            clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
+            transform: translate(-2px);
+            opacity: 0.7;
+        }
+
+        .cyber-logo::after {
+            color: #00f3ff;
+            animation: glitch-2 3s infinite linear alternate-reverse;
+            clip-path: polygon(0 55%, 100% 55%, 100% 100%, 0 100%);
+            transform: translate(2px);
+            opacity: 0.7;
+        }
+
+        @keyframes glitch-1 {
+            0%, 100% { transform: translate(-2px); }
+            20% { transform: translate(2px); }
+            40% { transform: translate(-1px); }
+            60% { transform: translate(1px); }
+            80% { transform: translate(-1px); }
+        }
+
+        @keyframes glitch-2 {
+            0%, 100% { transform: translate(2px); }
+            20% { transform: translate(-2px); }
+            40% { transform: translate(1px); }
+            60% { transform: translate(-1px); }
+            80% { transform: translate(1px); }
+        }
+
+        @keyframes logo-glow {
+            0%, 100% { text-shadow: 0 0 10px rgba(0, 255, 65, 0.5); }
+            50% { text-shadow: 0 0 20px rgba(0, 255, 65, 0.8), 0 0 30px rgba(0, 255, 65, 0.4); }
+        }
+
+        /* Terminal flotante */
+        .floating-terminal {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            width: 320px;
+            max-height: 180px;
+            background: rgba(5, 5, 10, 0.95);
+            border: 1px solid rgba(0, 255, 65, 0.3);
+            border-radius: 6px;
+            padding: 10px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            color: #00ff41;
+            z-index: 100;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(0, 255, 65, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .terminal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 6px;
+            padding-bottom: 6px;
+            border-bottom: 1px solid rgba(0, 255, 65, 0.2);
+        }
+
+        .terminal-title {
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #00f3ff;
+        }
+
+        .terminal-status {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.65rem;
+        }
+
+        .status-dot {
+            width: 6px;
+            height: 6px;
+            background: #00ff41;
+            border-radius: 50%;
+            animation: blink 1.5s infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
+        }
+
+        .terminal-content {
+            max-height: 120px;
+            overflow-y: auto;
+            line-height: 1.4;
+        }
+
+        .terminal-line {
+            margin-bottom: 3px;
+            opacity: 0;
+            animation: fade-in 0.3s forwards;
+        }
+
+        .terminal-line.warning { color: #ffbf00; }
+        .terminal-line.error { color: #ff003c; }
+        .terminal-line.success { color: #00ff41; }
+        .terminal-line.info { color: #00f3ff; }
+
+        @keyframes fade-in {
+            to { opacity: 1; }
+        }
+
+        .terminal-line::before {
+            content: '> ';
+            color: #00f3ff;
+        }
+
+        /* Security Badge */
+        .security-badge {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 12px 18px;
+            background: rgba(10, 10, 15, 0.95);
+            border: 1px solid rgba(0, 243, 255, 0.4);
+            border-radius: 6px;
+            z-index: 100;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 0 25px rgba(0, 243, 255, 0.15);
+        }
+
+        .badge-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.65rem;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 4px;
+        }
+
+        .badge-value {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #00f3ff;
+            text-shadow: 0 0 10px rgba(0, 243, 255, 0.5);
+            letter-spacing: 2px;
+        }
+
+        .badge-bar {
+            width: 100%;
+            height: 2px;
+            background: rgba(0, 243, 255, 0.2);
+            margin-top: 8px;
+            border-radius: 1px;
+            overflow: hidden;
+        }
+
+        .badge-progress {
+            height: 100%;
+            background: linear-gradient(90deg, #00f3ff, #00ff41);
+            width: 0%;
+            animation: load 2.5s ease-out forwards;
+        }
+
+        @keyframes load {
+            to { width: 100%; }
+        }
+
+        /* Botón mute */
+        .mute-btn {
+            position: fixed;
+            top: 80px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            background: rgba(10, 10, 15, 0.9);
+            border: 1px solid rgba(0, 255, 65, 0.3);
+            border-radius: 8px;
+            cursor: pointer;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .mute-btn:hover {
+            background: rgba(0, 255, 65, 0.1);
+            border-color: rgba(0, 255, 65, 0.6);
+            box-shadow: 0 0 15px rgba(0, 255, 65, 0.3);
+        }
+
+        .mute-btn svg {
+            width: 20px;
+            height: 20px;
+            fill: #00ff41;
+        }
+
+        /* Hex pattern background */
+        .hex-pattern {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='49' viewBox='0 0 28 49'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%2300f3ff' fill-opacity='0.025' fill-rule='nonzero'%3E%3Cpath d='M13.99 9.25l13 7.5v15l-13 7.5L1 31.75v-15l12.99-7.5zM3 17.9v12.7l10.99 6.34 11-6.35V17.9l-11-6.34L3 17.9zM0 15l12.98-7.5V0h-2v6.35L0 12.69v2.3zm0 18.5L12.98 41v8h-2v-6.85L0 35.81v-2.3zM15 0v7.5L26.98 15H28v-2.31h-.01L17 6.35V0h-2zm0 49v-8l12 6.85V49h-2v-7.5L15 41z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            z-index: 1;
+            pointer-events: none;
+        }
+
         /* Overlay del modal */
         .modal-overlay {
             position: fixed;
@@ -165,14 +455,64 @@
         .skill-card[data-modal] {
             cursor: pointer;
         }
+
+        /* Spinner para botón de envío */
+        .spin {
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .btn:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
     </style>
 </head>
 <body>
+    <!-- Efectos de ciberseguridad -->
+    <canvas id="matrix-canvas"></canvas>
+    <div class="scanlines"></div>
+    <div class="scan-bar"></div>
+    <div class="hex-pattern"></div>
+
+    <!-- Terminal flotante -->
+    <div class="floating-terminal" id="floating-terminal">
+        <div class="terminal-header">
+            <span class="terminal-title">root@cyber-ops:~</span>
+            <div class="terminal-status">
+                <span class="status-dot"></span>
+                <span>ONLINE</span>
+            </div>
+        </div>
+        <div class="terminal-content" id="terminal-content">
+            <div class="terminal-line info">Iniciando sistema...</div>
+        </div>
+    </div>
+
+    <!-- Security Badge -->
+    <div class="security-badge" id="security-badge">
+        <div class="badge-label">Nivel de Acceso</div>
+        <div class="badge-value" id="badge-level">CLEARANCE 5</div>
+        <div class="badge-bar">
+            <div class="badge-progress"></div>
+        </div>
+    </div>
+
+    <!-- Botón Mute -->
+    <button class="mute-btn" id="mute-btn" aria-label="Activar/desactivar sonidos">
+        <svg id="sound-on" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
+        <svg id="sound-off" viewBox="0 0 24 24" style="display:none;"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>
+    </button>
+
     <!-- Navegación principal -->
     <nav class="navbar" id="navbar">
         <div class="navbar-container">
             <a href="#inicio" class="navbar-logo">
-                <span class="logo-text">&lt;OP_INTEL/&gt;</span>
+                <span class="logo-text cyber-logo" data-text="[CYBER_SEC]">[CYBER_SEC]</span>
             </a>
 
             <!-- Menú de escritorio -->
@@ -452,22 +792,25 @@
                 </div>
 
                 <!-- Formulario de contacto -->
-                <form class="contact-form" id="contact-form" action='https://formsubmit.co/Josehacksyt@gmail.com' method='POST'>
-                    <input type='hidden' name='_subject' value='¡Nuevo mensaje!'>
+                <form class="contact-form" id="contact-form" action="https://formsubmit.co/Josehacksyt@gmail.com" method="POST">
+                    <!-- Configuración de FormSubmit -->
+                    <input type="hidden" name="_subject" value="¡Nuevo mensaje desde tu portafolio!">
+                    <input type="hidden" name="_captcha" value="false">
+                    <input type="hidden" name="_template" value="table">
                     <div class="form-group">
                         <label for="name" class="form-label">Nombre</label>
-                        <input type="text" id="name" name="nombre" class="form-input" placeholder="Nombre" required>
+                        <input type="text" id="name" name="nombre" class="form-input" placeholder="Tu nombre" required autocomplete="name">
                     </div>
                     <div class="form-group">
                         <label for="email" class="form-label">Email</label>
-                        <input type="email" id="email" name="email" class="form-input" placeholder="Correo" required>
+                        <input type="email" id="email" name="email" class="form-input" placeholder="tu@email.com" required autocomplete="email">
                     </div>
                     <div class="form-group">
                         <label for="message" class="form-label">Mensaje</label>
-                        <textarea id="message" name="mensaje" class="form-input form-textarea" placeholder="Mensaje" rows="5" required></textarea>
+                        <textarea id="message" name="mensaje" class="form-input form-textarea" placeholder="Cuéntame sobre tu proyecto..." rows="5" required></textarea>
                     </div>
-                    <button type="submit" class="btn btn-primary btn-full">
-                        <span>Enviar</span>
+                    <button type="submit" class="btn btn-primary btn-full" id="submit-btn">
+                        <span>Enviar mensaje</span>
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/>
                         </svg>
@@ -1239,11 +1582,12 @@
         // FORMULARIO DE CONTACTO
         // -----------------------------------------------------
         const contactForm = document.getElementById('contact-form');
+        const submitBtn = document.getElementById('submit-btn');
+
         if (contactForm) {
             contactForm.addEventListener('submit', (e) => {
                 e.preventDefault();
 
-                // Validación directa con .value.trim() - INFALIBLE
                 const nameInput = document.getElementById('name');
                 const emailInput = document.getElementById('email');
                 const messageInput = document.getElementById('message');
@@ -1252,15 +1596,43 @@
                 const email = emailInput.value.trim();
                 const message = messageInput.value.trim();
 
+                // Validación de campos
                 if (name === '' || email === '' || message === '') {
                     showAlert('Por favor completa todos los campos', 'error');
                     return;
                 }
 
+                // Validación de email
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(email)) {
+                    showAlert('Por favor ingresa un email válido', 'error');
+                    return;
+                }
+
+                // Validación de longitud mínima
+                if (name.length < 2) {
+                    showAlert('El nombre debe tener al menos 2 caracteres', 'error');
+                    return;
+                }
+
+                if (message.length < 10) {
+                    showAlert('El mensaje debe tener al menos 10 caracteres', 'error');
+                    return;
+                }
+
+                // Mostrar estado de envío
+                const originalBtnText = submitBtn.innerHTML;
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = '<span>Enviando...</span><svg class="spin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>';
+
                 // Enviar formulario a FormSubmit
-                contactForm.action = 'https://formsubmit.co/Josehacksyt@gmail.com';
-                contactForm.method = 'POST';
                 contactForm.submit();
+
+                // Restaurar botón después de 3 segundos (por si falla el redirect)
+                setTimeout(() => {
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = originalBtnText;
+                }, 3000);
             });
         }
 
@@ -1387,15 +1759,222 @@
         }
 
         // -----------------------------------------------------
+        // MATRIX RAIN EFFECT
+        // -----------------------------------------------------
+        const matrixCanvas = document.getElementById('matrix-canvas');
+        if (matrixCanvas) {
+            const ctx = matrixCanvas.getContext('2d');
+            matrixCanvas.width = window.innerWidth;
+            matrixCanvas.height = window.innerHeight;
+
+            const chars = '01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン';
+            const fontSize = 14;
+            const columns = Math.floor(matrixCanvas.width / fontSize);
+            const drops = Array(columns).fill(1);
+
+            function drawMatrix() {
+                ctx.fillStyle = 'rgba(5, 5, 10, 0.05)';
+                ctx.fillRect(0, 0, matrixCanvas.width, matrixCanvas.height);
+
+                ctx.fillStyle = '#00ff41';
+                ctx.font = fontSize + 'px monospace';
+
+                for (let i = 0; i < drops.length; i++) {
+                    const text = chars[Math.floor(Math.random() * chars.length)];
+                    ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+                    if (drops[i] * fontSize > matrixCanvas.height && Math.random() > 0.975) {
+                        drops[i] = 0;
+                    }
+                    drops[i]++;
+                }
+            }
+
+            setInterval(drawMatrix, 33);
+
+            window.addEventListener('resize', () => {
+                matrixCanvas.width = window.innerWidth;
+                matrixCanvas.height = window.innerHeight;
+            });
+        }
+
+        // -----------------------------------------------------
+        // HACKER TERMINAL - LOGS EN TIEMPO REAL
+        // -----------------------------------------------------
+        const terminalLogs = [
+            { text: 'Escaneando red...', type: 'info' },
+            { text: '192.168.1.1 - Gateway', type: 'info' },
+            { text: 'Puerto 22 SSH - ABIERTO', type: 'warning' },
+            { text: 'Puerto 443 HTTPS - OK', type: 'success' },
+            { text: 'Analizando vulnerabilidades...', type: 'info' },
+            { text: 'CVE-2024-XXXX detectado', type: 'error' },
+            { text: 'Aplicando patch...', type: 'warning' },
+            { text: 'Sistema asegurado', type: 'success' },
+            { text: 'Monitoreo activo', type: 'info' },
+            { text: 'Firewall: ENABLED', type: 'success' },
+            { text: 'IDS/IPS: MONITORING', type: 'info' },
+            { text: 'Encriptación: AES-256', type: 'success' },
+        ];
+
+        const terminalContent = document.getElementById('terminal-content');
+        let logIndex = 0;
+
+        function addTerminalLog() {
+            if (!terminalContent) return;
+
+            const log = terminalLogs[logIndex % terminalLogs.length];
+            const logLine = document.createElement('div');
+            logLine.className = `terminal-line ${log.type}`;
+            logLine.textContent = log.text;
+            terminalContent.appendChild(logLine);
+            terminalContent.scrollTop = terminalContent.scrollHeight;
+
+            // Mantener solo últimas 8 líneas
+            while (terminalContent.children.length > 8) {
+                terminalContent.removeChild(terminalContent.firstChild);
+            }
+
+            logIndex++;
+            setTimeout(addTerminalLog, Math.random() * 2000 + 1500);
+        }
+
+        setTimeout(addTerminalLog, 2000);
+
+        // -----------------------------------------------------
+        // SECURITY BADGE - NIVEL DINÁMICO
+        // -----------------------------------------------------
+        const clearanceLevels = ['CLEARANCE 1', 'CLEARANCE 2', 'CLEARANCE 3', 'CLEARANCE 4', 'CLEARANCE 5'];
+        const badgeLevel = document.getElementById('badge-level');
+        let currentLevel = 4;
+
+        function updateClearance() {
+            if (!badgeLevel) return;
+            currentLevel = (currentLevel + 1) % clearanceLevels.length;
+            badgeLevel.textContent = clearanceLevels[currentLevel];
+            badgeLevel.style.animation = 'none';
+            badgeLevel.offsetHeight;
+            badgeLevel.style.animation = 'blink 0.3s ease';
+        }
+
+        setTimeout(() => {
+            setInterval(updateClearance, 6000);
+        }, 3000);
+
+        // -----------------------------------------------------
+        // SISTEMA DE SONIDOS DE HACKING
+        // -----------------------------------------------------
+        let soundEnabled = false;
+        const muteBtn = document.getElementById('mute-btn');
+        const soundOnIcon = document.getElementById('sound-on');
+        const soundOffIcon = document.getElementById('sound-off');
+
+        // Oscilador para sonidos sintéticos
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+        function playHackSound(type = 'click') {
+            if (!soundEnabled || audioCtx.state === 'suspended') return;
+
+            const oscillator = audioCtx.createOscillator();
+            const gainNode = audioCtx.createGain();
+
+            oscillator.connect(gainNode);
+            gainNode.connect(audioCtx.destination);
+
+            if (type === 'click') {
+                oscillator.frequency.value = 800 + Math.random() * 400;
+                oscillator.type = 'square';
+                gainNode.gain.setValueAtTime(0.02, audioCtx.currentTime);
+                gainNode.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.05);
+                oscillator.start();
+                oscillator.stop(audioCtx.currentTime + 0.05);
+            } else if (type === 'type') {
+                oscillator.frequency.value = 600 + Math.random() * 200;
+                oscillator.type = 'sine';
+                gainNode.gain.setValueAtTime(0.015, audioCtx.currentTime);
+                gainNode.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.03);
+                oscillator.start();
+                oscillator.stop(audioCtx.currentTime + 0.03);
+            } else if (type === 'alert') {
+                oscillator.frequency.value = 400;
+                oscillator.type = 'sawtooth';
+                gainNode.gain.setValueAtTime(0.02, audioCtx.currentTime);
+                gainNode.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.2);
+                oscillator.start();
+                oscillator.stop(audioCtx.currentTime + 0.2);
+            }
+
+            setTimeout(() => {
+                oscillator.disconnect();
+                gainNode.disconnect();
+            }, 300);
+        }
+
+        // Toggle mute
+        if (muteBtn) {
+            muteBtn.addEventListener('click', () => {
+                soundEnabled = !soundEnabled;
+                soundOnIcon.style.display = soundEnabled ? 'block' : 'none';
+                soundOffIcon.style.display = soundEnabled ? 'none' : 'block';
+
+                if (soundEnabled && audioCtx.state === 'suspended') {
+                    audioCtx.resume();
+                }
+
+                playHackSound('click');
+            });
+        }
+
+        // Sonidos al escribir (opcional, solo si está activado)
+        document.addEventListener('keydown', (e) => {
+            if (soundEnabled && e.target.tagName !== 'INPUT' && e.target.tagName !== 'TEXTAREA') {
+                playHackSound('type');
+            }
+        });
+
+        // Sonido en enlaces al hacer click
+        document.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => playHackSound('click'));
+        });
+
+        // -----------------------------------------------------
         // CONSOLE EASTER EGG
         // -----------------------------------------------------
         console.log(`
-%c🔐 OPERADOR DE INTELIGENCIA Y CIBERSEGURIDAD AVANZADA
+%c  ██████╗██╗   ██╗██████╗ ███████╗██████╗ ███████╗
+%c ██╔════╝██║   ██║██╔══██╗██╔════╝██╔══██╗██╔════╝
+%c ██║     ██║   ██║██████╔╝█████╗  ██████╔╝█████╗
+%c ██║     ██║   ██║██╔══██╗██╔══╝  ██╔══██╗██╔══╝
+%c ╚██████╗╚██████╔╝██║  ██║███████╗██║  ██║███████╗
+%c  ╚═════╝ ╚═════╝ ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝╚══════╝
 %c
-Acceso autorizado. Bienvenido al centro de operaciones.
+%c  [SYSTEM STATUS]
+%c  ✓ Firewall: ACTIVE
+%c  ✓ IDS/IPS: MONITORING
+%c  ✓ Encryption: AES-256-GCM
+%c  ✓ VPN: CONNECTED
+%c  ✓ Threat Level: LOW
+%c
+%c  [WARNING]
+%c  Unauthorized access prohibited.
+%c  All activities logged and monitored.
         `,
-            'color: #00ffff; font-family: monospace; font-size: 16px; font-weight: bold;',
-            'color: #a1a1aa; font-family: monospace; font-size: 12px;'
+            'color: #00ff41; font-family: monospace; font-size: 10px; font-weight: bold;',
+            'color: #00ff41; font-family: monospace; font-size: 10px;',
+            'color: #00ff41; font-family: monospace; font-size: 10px;',
+            'color: #00ff41; font-family: monospace; font-size: 10px;',
+            'color: #00ff41; font-family: monospace; font-size: 10px;',
+            'color: #00ff41; font-family: monospace; font-size: 10px;',
+            'color: #00ff41; font-family: monospace; font-size: 10px;',
+            'color: #00ff41; font-family: monospace; font-size: 10px;',
+            'color: #00f3ff; font-family: monospace; font-size: 10px; font-weight: bold;',
+            'color: #00f3ff; font-family: monospace; font-size: 10px;',
+            'color: #00f3ff; font-family: monospace; font-size: 10px;',
+            'color: #00f3ff; font-family: monospace; font-size: 10px;',
+            'color: #00f3ff; font-family: monospace; font-size: 10px;',
+            'color: #00f3ff; font-family: monospace; font-size: 10px;',
+            'color: #ff003c; font-family: monospace; font-size: 10px; font-weight: bold;',
+            'color: #ff003c; font-family: monospace; font-size: 10px;',
+            'color: #ff003c; font-family: monospace; font-size: 10px;'
         );
     </script>
 </body>
